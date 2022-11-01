@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <title>메인페이지</title>
+
+    <style>
+        * {
+            text-align: center;
+            margin: 40px auto 40px auto;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            console.log("현재 ID = {{session['id']}}")
+            console.log("현재 PW = {{session['pw']}}")
+        })
+
+        function logout() {
+            $.ajax({
+                type: 'GET',
+                url: '/logout',
+                data: {},
+                success: function () {
+                    alert("로그아웃 하였습니다 !")
+                    location.href = "/"
+                }
+            })
+        }
+
+    </script>
+
+</head>
+<body>
+
+<h1>메인페이지 success login</h1>
+<div>
+    <button onclick="logout()" type="button" class="btn btn-dark">로그아웃하기</button>
+</div>
+<div>
+    <button onclick="window.location.href='/myinfo'" type="button" class="btn btn-dark">내 정보 확인</button>
+</div>
+
+</body>
+</html>
