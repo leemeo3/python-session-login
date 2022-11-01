@@ -66,6 +66,7 @@
                                 <p>이메일 : ${infoemail}</p>
                                 <button onclick="logout()" type="button" class="btn btn-dark">로그아웃 하기</button>
                                 <button onclick="change_pw()" type="button" class="btn btn-dark">비밀번호 변경</button>
+                                <button onclick="home()" type="button" class="btn btn-dark">메인페이지로 이동</button>
                             </ul>`
                                 $('#myinfo').append(temp_html)
                             }
@@ -89,6 +90,10 @@
 
         function change_pw() {
             location.href = "/change_pw"
+        }
+
+        function home() {
+            location.href = "/"
         }
 
     </script>
