@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <title>★자유게시판★</title>
+
+    <div class="mypic">
+        <h1>★자유게시판★</h1>
+    </div>
+    <div class="mybox">
+        <div class="mynotice">
+            <input id="notice" class="form-control" type="text" placeholder="검색">
+            <a href="http://localhost:63342/pythonProject/%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC.html?_ijt=i1v6iee8n333kv1ad0ujp96fj9&_ij_reload=RELOAD_ON_SAVE">
+                <button onclick="save_notice()" type="button" class="btn btn-outline-primary">검색</button>
+            </a>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="/static/board.css">
+
+<script>
+     $(document).ready(function () {
+            board_list_get();
+            console.log("현재 ID = {{session['id']}}")
+            console.log("현재 PW = {{session['pw']}}")
+        });
+
+     function board_list_get(){
+         $.ajax({
+                type: "GET",
+                url: "/board/get",
+                data: {},
+                success: function (response) {
+                    let rows = response['boards']
+                    for (let i = 0; i < rows.length; i++) {
+                        let number = rows[i]['number']
+                        let title = rows[i]['title']
+                        let contents = rows[i]['contents']
+                        let name = rows[i]['name']
+                        let date = rows[i]['date']
+                        let temp_html = `<tr>
+                                            <td width="10%">${number}</td>
+                                            <td class="tit" width="50%">
+                                                <a href="/templates/board_view.html" target="_blank">${title}</a>
+                                            </td>
+                                            <td width="20%">${name}</td>
+                                            <td width="20%">${date}</td>
+                                        </tr>`
+                        $('#board_content_list').append(temp_html)
+                    }
+                }
+            });
+     }
+</script>
+
+</head>
+<body>
+<div class="board_list_weap">
+    <table class="board_list">
+        <caption> 게시판 목록</caption>
+        <thead>
+            <button href="http://localhost:63342/pythonProject/notice_board.html0.html?_ijt=9k6us3u5mar34c9bg7gg39su97&_ij_reload=RELOAD_ON_SAVE"
+               target="_blank">글쓰기
+            </button>
+        </thead>
+        <tbody id="board_content_list">
+        <tr>
+            <th width="10%">번호</th>
+            <th width="50%">제목</th>
+            <th width="20%">글쓴이</th>
+            <th width="20%">등록일</th>
+        </tr>
+
+
+        </tbody>
+    </table>
+<!--    <div class="paging">-->
+<!--        <a href="#" class="num">1</a>-->
+<!--    </div>-->
+</div>
+</body>
+</html>

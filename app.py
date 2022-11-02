@@ -1,5 +1,5 @@
 import datetime
-import json
+import time
 
 from flask import Flask, render_template, request, jsonify, session, redirect
 app = Flask(__name__)
@@ -115,6 +115,71 @@ def change_pw():
 def info3():
     return render_template('change_pw.html')
 
+@app.route('/board', methods = ['POST'])
+def board_POST():
+    # board DB에 들어갈 데이터 목록 -------------------------------
+    # number_receive    글번호         app.py에서 구현
+    # title_receive     제목          html에서 받아옴
+    # contents_receive  내용          html에서 받아옴
+    # name_receive      이름(아이디X)   app.py에서 구현
+    # date_receive      등록일         app.py에서 구현
+    # ------------------------------------- -----------------
+
+    # number_receive 구현 ------------------------------------
+    board_list = list(db.board.find({}, {'_id': False}))
+    count = len(board_list) + 1
+    # -------------------------------------------------------
+
+    # name_receive 구현 -------------------------------------
+    user_list = list(db.user.find({}, {'_id': False}))
+    cnt = len(user_list)
+    sessionID = session['id']
+    name = ''
+
+    for i in range(cnt):
+        if user_list[i]['id'] == sessionID:
+            name = user_list[i]['name']
+    # ------------------------------------------------------
+
+    # date_receive 구현 -------------------------------------
+    now = time
+    date = now.strftime('%Y-%m-%d %H:%M:%S')
+    # ------------------------------------------------------
+
+    # board DB에 데이터 등록 ------------------------------------
+    number_receive = count
+    title_receive = request.form['title_give']
+    contents_receive = request.form['contents_give']
+    name_receive = name
+    date_receive = date
+
+    doc = {
+        'number': number_receive,
+        'title': title_receive,
+        'contents': contents_receive,
+        'name': name_receive,
+        'date': date_receive
+    }
+    db.board.insert_one(doc)
+    # -------------------------------------------------------
+
+    return jsonify({'msg':'등록 완료 !'})
+
+@app.route("/board")
+def board_html():
+    if 'id' in session:
+        if 'pw' in session:
+            return render_template("board.html")  # 아이디 비밀번호가 있을때
+    else:
+        return render_template("index.html") # 아이디 혹은 비밀번호가 없을떄
+@app.route("/board/get", methods= ["GET"])
+def board_get():
+    board_list = list(db.board.find({}, {'_id': False}))
+    return jsonify({'boards': board_list})
+
+@app.route("/board_write")
+def board_write():
+    return render_template("board_write.html")
 
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)
