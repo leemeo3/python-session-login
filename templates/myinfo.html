@@ -3,11 +3,11 @@
 <head>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
     <meta charset="UTF-8">
     <title>나의 정보</title>
@@ -27,7 +27,7 @@
             padding: 20px;
         }
 
-        .user_info > ul > button {
+        .user_info > li > button {
             background-color: black;
             width: 80%;
             margin: 10px auto 10px auto;
@@ -41,40 +41,40 @@
         $(document).ready(function () {
             info();
         });
-
-        function info() {
+        function info(){
             $.ajax({
-                    type: "GET",
-                    url: "/myinfo_data",
-                    data: {},
-                    success: function (response) {
-                        let rows = response['lists']
-                        let sessionID = "{{session['id']}}"
-                        for (let i = 0; i < rows.length; i++) {
-                            let temp_html = ``
-                            if (rows[i]['id'] == sessionID) {
-                                let infoid = rows[i]['id']
-                                let infoname = rows[i]['name']
-                                let infoaddress = rows[i]['address']
-                                let infoemail = rows[i]['email']
+             type: "GET",
+                url: "/myinfo_data",
+                data: {},
+                success: function (response) {
+                    let rows = response['lists']
+                    let sessionID = "{{session['id']}}"
+                    console.log(rows)
+                    console.log(sessionID)
+                    for (let i = 0; i < rows.length; i++) {
+                        let temp_html = ``
+                        if (rows[i]['id'] == sessionID) {
+                            let infoid = rows[i]['id']
+                            let infoname = rows[i]['name']
+                            let infoaddress = rows[i]['address']
+                            let infoemail = rows[i]['email']
 
-                                temp_html = `
+                            temp_html = `
                             <ul>
                                 <p>아이디 : ${infoid}</p>
                                 <p>별명 : ${infoname}</p>
                                 <p>주소 : ${infoaddress}</p>
                                 <p>이메일 : ${infoemail}</p>
                                 <button onclick="logout()" type="button" class="btn btn-dark">로그아웃 하기</button>
-                                <button onclick="change_pw()" type="button" class="btn btn-dark">비밀번호 변경</button>
-                                <button onclick="home()" type="button" class="btn btn-dark">메인페이지로 이동</button>
+                                <button onclick="힝속았찡()" type="button" class="btn btn-dark">비밀번호 변경</button>
                             </ul>`
-                                $('#myinfo').append(temp_html)
-                            }
+                            $('#myinfo').append(temp_html)
+                        }
                         }
                     }
                 }
-            )
-        }
+            )}
+
 
         function logout() {
             $.ajax({
@@ -87,22 +87,17 @@
                 }
             })
         }
-
-        function change_pw() {
-            location.href = "/change_pw"
-        }
-
-        function home() {
-            location.href = "/"
+        function 힝속았찡(){
+            alert("힝 속았찡~!")
         }
 
     </script>
 
 </head>
 <body>
-<h1>나의 정보</h1>
-<div class="user_info" id="myinfo">
-</div>
+    <h1>나의 정보</h1>
+    <div class="user_info" id="myinfo">
+    </div>
 
 </body>
 </html>

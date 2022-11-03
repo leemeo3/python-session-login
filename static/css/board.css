@@ -1,0 +1,185 @@
+/* 게시판 글쓰기 */
+.write {
+    width: 700px;
+    margin: 0 auto;
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+}
+
+.write input {
+    width: 676px;
+    padding: 10px;
+    margin: 12px auto 0;
+}
+
+.write .text {
+    table-layout: fixed;
+    height: 300px;
+    white-space: pre-line;
+    word-break: break-all;
+}
+
+.write .button {
+    padding: 0 200px;
+    margin: 15px auto;
+}
+
+.write .button a {
+    border: 1px solid black;
+    background: gainsboro;
+    margin: 10px;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.write .button a:hover {
+    color: blueviolet;
+}
+
+.write p {
+    text-align: center;
+}
+
+{
+    margin: 0
+;
+    padding: 0
+;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+caption {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.board_list_wrap {
+    padding: 50px;
+
+}
+
+.board_list {
+    width: 100%;
+    border-top: 1px solid navy;
+}
+
+.board_list tr {
+    border-bottom: 1px solid #ccc;
+}
+
+.board_list th,
+.board_list td {
+    padding: 10px;
+    font-size: 14px;
+
+}
+
+
+.board_list tbody tr td:nth-child(2) {
+
+    text-align: left
+}
+
+.board_list.tit:hover {
+    text-decoration: underline;
+}
+
+.board_list_wrap .paging {
+    margin-top: 10px;
+    font-size: 0;
+}
+
+.board_list_wrap .paging {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    font-size: 12px;
+    border-radius: 100px;
+}
+
+.board_list_wrap .paging a:first-child {
+    margin-left: 0;
+}
+
+.board_list_wrap .paging a.bt {
+    background: #eee;
+}
+
+.board_list_wrap .paging a.num {
+    border: 1px solid #000;
+    font-width: 600;
+}
+
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+.mypic {
+    width: 100%;
+    height: 200px;
+
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1601024445121-e5b82f020549?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80');
+    background-position: center;
+    background-size: cover;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mypic > h1 {
+    font-size: 30px;
+}
+
+.mybox {
+    width: 95%;
+    max-width: 700px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px lightblue;
+    margin: 20px auto;
+}
+
+.mynotice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mynotice > input {
+    width: 70%;
+}
+
+.mybox > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 10px;
+    min-height: 48px;
+}
+
+.mybox > li > h2 {
+    max-width: 75%;
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: auto;
+    margin-bottom: 0px;
+}
+
+.mybox > li > h2.done {
+    text-decoration: line-through
+}

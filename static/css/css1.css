@@ -1,0 +1,95 @@
+/* 게시판 글쓰기 */
+.write {
+    width: 700px; margin: 0 auto;
+    border-top: 3px solid gray; border-bottom: 3px solid gray;
+}
+.write input {width: 676px; padding: 10px; margin: 12px auto 0;}
+.write .text {table-layout: fixed;
+    height: 300px; white-space: pre-line; word-break: break-all;
+}
+.write .button {padding: 0 200px; margin: 15px auto;}
+.write .button a {
+    border: 1px solid black; background: gainsboro;
+    margin: 10px; padding: 5px;
+    text-decoration: none; color: black;
+}
+.write .button a:hover {color: blueviolet;}
+.write p {text-align: center;}
+
+{
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+caption {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.board_list_wrap {
+    padding: 50px;
+
+}
+.board_list {
+    width: 100%;
+    border-top: 1px solid navy;
+}
+
+.board_list tr {
+    border-bottom: 1px solid #ccc;
+}
+
+.board_list th,
+.board_list td {
+    padding: 10px;
+    font-size: 14px;
+
+}
+
+
+.board_list td {
+    text-align: center;
+}
+
+.board_list tbody tr td:nth-child(2) {
+
+    text-align: left
+}
+.board_list.tit:hover {
+    text-decoration: underline;
+}
+
+.board_list_wrap .paging {
+    margin-top: 10px;
+    font-size: 0;
+}
+
+.board_list_wrap .paging {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    font-size: 12px;
+    border-radius: 100px;
+}
+
+.board_list_wrap .paging a:first-child {
+    margin-left: 0;
+}
+
+.board_list_wrap .paging a.bt {
+    background: #eee;
+}
+
+.board_list_wrap .paging a.num {
+    border: 1px solid #000;
+    font-width: 600;
+}

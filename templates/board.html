@@ -19,18 +19,22 @@
     <div class="mypic">
         <h1>★자유게시판★</h1>
     </div>
-    <div class="mybox">
-        <div class="mynotice">
-            <input id="notice" class="form-control" type="text" placeholder="검색">
-            <a href="http://localhost:63342/pythonProject/%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC.html?_ijt=i1v6iee8n333kv1ad0ujp96fj9&_ij_reload=RELOAD_ON_SAVE">
-                <button onclick="save_notice()" type="button" class="btn btn-outline-primary">검색</button>
-            </a>
-        </div>
-    </div>
+<!--    <div class="mybox">-->
+<!--        <div class="mynotice">-->
+<!--            <input id="notice" class="form-control" type="text" placeholder="검색">-->
+<!--            <a href="http://localhost:63342/pythonProject/%EA%B2%80%EC%83%89%EA%B2%B0%EA%B3%BC.html?_ijt=i1v6iee8n333kv1ad0ujp96fj9&_ij_reload=RELOAD_ON_SAVE">-->
+<!--                <button onclick="save_notice()" type="button" class="btn btn-outline-primary">검색</button>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <link rel="stylesheet" href="/static/board.css">
+    <link rel="stylesheet" href="/static/css/board.css">
 
 <script>
+    function write_click() {
+            window.location.href = '/board_write'
+        }
+
      $(document).ready(function () {
             board_list_get();
             console.log("현재 ID = {{session['id']}}")
@@ -44,16 +48,17 @@
                 data: {},
                 success: function (response) {
                     let rows = response['boards']
-                    for (let i = 0; i < rows.length; i++) {
+                    for (let i = rows.length-1; i >= 0; i--) {
                         let number = rows[i]['number']
                         let title = rows[i]['title']
                         let contents = rows[i]['contents']
                         let name = rows[i]['name']
                         let date = rows[i]['date']
+                        let boardurl = rows[i]['boardurl']
                         let temp_html = `<tr>
                                             <td width="10%">${number}</td>
                                             <td class="tit" width="50%">
-                                                <a href="/templates/board_view.html" target="_blank">${title}</a>
+                                                <a href="${boardurl}" target="_blank">${title}</a>
                                             </td>
                                             <td width="20%">${name}</td>
                                             <td width="20%">${date}</td>
@@ -63,17 +68,41 @@
                 }
             });
      }
-</script>
 
+
+
+</script>
+<style>
+    .board_list_weap{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .write_button{
+        margin : 10px 10px 10px 10px;
+        color : black !important;;
+    position: relative;
+    padding: 5px 20px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    border: 3px solid black;
+    }
+    .write_button:hover{
+        background-color: black;
+    color: white !important;;
+    }
+
+</style>
 </head>
 <body>
 <div class="board_list_weap">
     <table class="board_list">
         <caption> 게시판 목록</caption>
         <thead>
-            <button href="http://localhost:63342/pythonProject/notice_board.html0.html?_ijt=9k6us3u5mar34c9bg7gg39su97&_ij_reload=RELOAD_ON_SAVE"
-               target="_blank">글쓰기
-            </button>
+            <button class="write_button" type="button" onclick="write_click()">글쓰기</button>
         </thead>
         <tbody id="board_content_list">
         <tr>
