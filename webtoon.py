@@ -11,19 +11,13 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.xevhlvh.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.dbsparta
 
-from selenium import webdriver
-
 import datetime
 import time
-import json
 
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session, redirect
 app = Flask(__name__)
 app.secret_key = "My_Key"
-app.permanent_session_lifetime = datetime.timedelta(minutes=30)
-
-from pymongo import MongoClient
-import certifi
+app.permanent_session_lifetime = datetime.timedelta(minutes=50)
 
 headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 
@@ -288,7 +282,7 @@ def board_POST():
     # ------------------------------------------------------
 
     # date_receive 구현 -------------------------------------
-    now = time
+    now = datetime.datetime.now()
     date = now.strftime('%Y-%m-%d %H:%M:%S')
     # ------------------------------------------------------
 
